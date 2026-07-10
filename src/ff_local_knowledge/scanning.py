@@ -24,6 +24,21 @@ RULE_FILES = {"AGENTS.md", "CLAUDE.md", "GEMINI.md", ".editorconfig", "CONTRIBUT
 FORMATTER_FILES = {".prettierrc", ".prettierrc.json", "eslint.config.js", "ruff.toml"}
 CI_FILES = {".gitlab-ci.yml", "azure-pipelines.yml", "Jenkinsfile"}
 TEST_DIRECTORY_NAMES = {"test", "tests", "spec", "specs", "__tests__"}
+ADAPTER_DESCRIPTIONS = {
+    "generic": (
+        "Creates an `AGENTS.md` managed block and `.agents/skills/ff-*`; "
+        "does not create `.claude/skills` or `CLAUDE.md`. Choose this only when "
+        "the target agent understands `AGENTS.md` or `.agents/skills`."
+    ),
+    "codex": (
+        "Creates an `AGENTS.md` managed block and `.agents/skills/ff-*` for Codex; "
+        "does not create Claude files."
+    ),
+    "claude": (
+        "Creates a `CLAUDE.md` managed block and `.claude/skills/ff-*` for Claude Code; "
+        "does not create `.agents/skills` or `AGENTS.md`."
+    ),
+}
 
 
 def _finding(value: object, confidence: str, evidence: Iterable[str], source: str) -> dict:
@@ -138,6 +153,11 @@ def scan_workspace(workspace_root: str | Path) -> dict:
         "standards": standards,
         "adapters": environment["agents"],
         "proposed_adapters": proposed_adapters,
+        "adapter_descriptions": {
+            adapter: ADAPTER_DESCRIPTIONS[adapter]
+            for adapter in proposed_adapters
+            if adapter in ADAPTER_DESCRIPTIONS
+        },
         "questions": questions,
         "proposed_writes": proposed_writes,
         "snapshot_hash": workspace_snapshot(root),
@@ -174,6 +194,12 @@ def render_markdown_report(report: dict) -> str:
         lines.append(f"- `{item['value']}` ({item['confidence']}; {item['source']})")
     lines.extend(["", "## Proposed Installation", ""])
     lines.append(f"- Adapters: {', '.join(report['proposed_adapters'])}")
+    for adapter in report["proposed_adapters"]:
+        description = report.get("adapter_descriptions", {}).get(adapter)
+        if description:
+            lines.append(f"  - `{adapter}`: {description}")
+    if len(report["proposed_adapters"]) > 1:
+        lines.append("  - Selecting multiple adapters creates the union of their files.")
     lines.extend(f"- Write after confirmation: `{path}`" for path in report["proposed_writes"])
     lines.extend(["", "## Questions", ""])
     lines.extend(f"- {question}" for question in report["questions"])

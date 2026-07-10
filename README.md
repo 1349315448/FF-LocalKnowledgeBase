@@ -58,7 +58,7 @@ Review the report and create a confirmed answers file:
   "project_name": "Example Project",
   "locale": "en",
   "profile": "python",
-  "adapters": ["codex", "claude"],
+  "adapters": ["generic"],
   "knowledge_path": ".ff-knowledge"
 }
 ```
@@ -88,9 +88,15 @@ ffkb compact /path/to/project/.ff-knowledge
 The plan is bound to the scan snapshot. If the project changes before planning
 or applying, FF refuses the stale operation and requires a new scan.
 
+The example selects only `generic`: it creates an `AGENTS.md` managed block and
+`.agents/skills/ff-*`, but never creates Claude files. Select `codex` or
+`claude` only when that product is actually used; selecting multiple adapters
+creates the union of their files.
+
 ## Installed Layout
 
-Depending on confirmed adapters, the transaction creates:
+Depending on confirmed adapters, the transaction creates the following files.
+For `generic`, only the first, second, third, and last entries apply:
 
 ```text
 .ff-knowledge/                 canonical project knowledge

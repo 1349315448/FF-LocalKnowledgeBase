@@ -4,6 +4,6 @@
   "project_name": "Synthetic Workspace",
   "locale": "en",
   "profile": "python",
-  "adapters": ["codex", "claude"],
+  "adapters": ["generic"],
   "knowledge_path": ".ff-knowledge"
 }

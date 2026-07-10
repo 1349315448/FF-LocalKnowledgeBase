@@ -49,6 +49,11 @@ class ScanningTests(unittest.TestCase):
             self.assertIn("generic", report["proposed_adapters"])
             self.assertIn(".agents/skills/", report["proposed_writes"])
             self.assertIn("Proposed Installation", render_markdown_report(report))
+            generic_description = report["adapter_descriptions"]["generic"]
+            self.assertIn("AGENTS.md", generic_description)
+            self.assertIn(".agents/skills/ff-*", generic_description)
+            self.assertIn("does not create `.claude/skills` or `CLAUDE.md`", generic_description)
+            self.assertIn(generic_description, render_markdown_report(report))
             self.assertTrue(any(item["value"] == "tests" for item in report["architecture"]["test_containers"]))
             self.assertTrue(any(item["value"] == ".github/workflows/ci.yml" for item in report["architecture"]["ci"]))
             commands = {item["value"] for item in report["architecture"]["commands"]}
