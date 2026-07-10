@@ -15,9 +15,9 @@ dependencies, network calls, telemetry, hosted service, or model-provider lock-i
   compact, and lint.
 - A layered Markdown + JSON/JSONL knowledge format optimized for bounded agent
   context.
-- Seven portable Agent Skills: bootstrap, develop, knowledge, learn, plan,
-  verify, and review.
-- Generic/Codex and Claude workspace adapters.
+- Eight portable Agent Skills: bootstrap, KB bridge, develop, knowledge, learn,
+  plan, verify, and review.
+- Generic, Codex, Claude Code, and WorkBuddy workspace adapters.
 - Generic, .NET, Node.js, and Python baseline profiles that remain proposed
   until the user confirms them.
 
@@ -93,6 +93,9 @@ The example selects only `generic`: it creates an `AGENTS.md` managed block and
 `claude` only when that product is actually used; selecting multiple adapters
 creates the union of their files.
 
+For WorkBuddy, use `"adapters": ["workbuddy"]`. The plan installs project-level
+Skills under `.workbuddy-ai/skills/ff-*` and creates no AGENTS or Claude files.
+
 ## Installed Layout
 
 Depending on confirmed adapters, the transaction creates the following files.
@@ -102,6 +105,7 @@ For `generic`, only the first, second, third, and last entries apply:
 .ff-knowledge/                 canonical project knowledge
 .agents/skills/ff-*/           Generic and Codex Agent Skills
 .claude/skills/ff-*/           Claude Code Agent Skills
+.workbuddy-ai/skills/ff-*/     WorkBuddy project Agent Skills
 AGENTS.md                      reviewed FF managed block
 CLAUDE.md                      reviewed FF managed block
 .ffkb/runtime/                 install journal and manifest

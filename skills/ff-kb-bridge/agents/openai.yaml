@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF KB Bridge"
+  short_description: "Query and maintain local FF knowledge safely"
+  default_prompt: "Use $ff-kb-bridge to inspect and query this project's FF knowledge base."

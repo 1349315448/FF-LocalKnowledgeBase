@@ -33,6 +33,7 @@ class ScanningTests(unittest.TestCase):
             (root / "tests" / "test_sample.py").write_text("pass\n", encoding="utf-8")
             (root / ".github" / "workflows").mkdir(parents=True)
             (root / ".github" / "workflows" / "ci.yml").write_text("name: ci\n", encoding="utf-8")
+            (root / ".workbuddy-ai" / "skills").mkdir(parents=True)
             before = tree_hash(root)
 
             report = scan_workspace(root)
@@ -47,13 +48,18 @@ class ScanningTests(unittest.TestCase):
             self.assertTrue(any(item["source"] == "repository-rules" for item in report["standards"]))
             self.assertIn("Confirmation required", render_markdown_report(report))
             self.assertIn("generic", report["proposed_adapters"])
+            self.assertIn("workbuddy", report["proposed_adapters"])
             self.assertIn(".agents/skills/", report["proposed_writes"])
+            self.assertIn(".workbuddy-ai/skills/", report["proposed_writes"])
             self.assertIn("Proposed Installation", render_markdown_report(report))
             generic_description = report["adapter_descriptions"]["generic"]
             self.assertIn("AGENTS.md", generic_description)
             self.assertIn(".agents/skills/ff-*", generic_description)
             self.assertIn("does not create `.claude/skills` or `CLAUDE.md`", generic_description)
             self.assertIn(generic_description, render_markdown_report(report))
+            workbuddy_description = report["adapter_descriptions"]["workbuddy"]
+            self.assertIn(".workbuddy-ai/skills/ff-*", workbuddy_description)
+            self.assertIn("does not create `AGENTS.md`, `CLAUDE.md`", workbuddy_description)
             self.assertTrue(any(item["value"] == "tests" for item in report["architecture"]["test_containers"]))
             self.assertTrue(any(item["value"] == ".github/workflows/ci.yml" for item in report["architecture"]["ci"]))
             commands = {item["value"] for item in report["architecture"]["commands"]}
@@ -69,6 +75,8 @@ class ScanningTests(unittest.TestCase):
             (root / ".agent" / "sdd").mkdir(parents=True)
             (root / ".agent" / "sdd" / "package.json").write_text('{"private": true}', encoding="utf-8")
             (root / ".agent" / "sdd" / "go.mod").write_text("module ignored\n", encoding="utf-8")
+            (root / ".workbuddy-ai" / "skills").mkdir(parents=True)
+            (root / ".workbuddy-ai" / "skills" / "go.mod").write_text("module workbuddy-ignored\n", encoding="utf-8")
             (root / "image.png").write_bytes(b"\x89PNG\x00secret-value")
             (root / "large.txt").write_bytes(b"x" * 1_100_000)
             (root / "package.json").write_text('{"name":"safe"}', encoding="utf-8")
@@ -80,6 +88,7 @@ class ScanningTests(unittest.TestCase):
             evidence = json.dumps([item["evidence"] for item in report["findings"]])
             self.assertNotIn("node_modules", evidence)
             self.assertNotIn(".agent", evidence)
+            self.assertNotIn(".workbuddy-ai", evidence)
             self.assertNotIn("image.png", evidence)
             self.assertNotIn("large.txt", evidence)
             self.assertIn("package.json", evidence)

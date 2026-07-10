@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {
     "ff-bootstrap",
+    "ff-kb-bridge",
     "ff-develop",
     "ff-knowledge",
     "ff-learn",
@@ -38,6 +39,21 @@ class SkillContractTests(unittest.TestCase):
             self.assertRegex(skill_text, r"(?m)^description:\s*\S.+$")
             self.assertLess(len(skill_text.splitlines()), 500, name)
             self.assertTrue((skill_root / "agents" / "openai.yaml").is_file(), name)
+
+    def test_workbuddy_bridge_keeps_a_portable_skill_contract(self) -> None:
+        skill = (ROOT / "skills" / "ff-kb-bridge" / "SKILL.md").read_text(encoding="utf-8")
+        description = re.search(r"(?m)^description:\s*(.+)$", skill)
+
+        self.assertIsNotNone(description)
+        self.assertLessEqual(len(description.group(1)), 200)
+        self.assertIn("## Principles", skill)
+        self.assertIn("## Steps", skill)
+        self.assertIn("## Commands", skill)
+        self.assertIn("## Output Contract", skill)
+        self.assertIn("## Boundaries", skill)
+        self.assertNotIn("C:\\", skill)
+        self.assertNotIn("~/.workbuddy-ai", skill)
+        self.assertIn('skills/ff-kb-bridge/SKILL.md', (ROOT / "pyproject.toml").read_text(encoding="utf-8"))
 
     def test_public_templates_do_not_contain_private_workspace_coupling(self) -> None:
         public_roots = [ROOT / "skills", ROOT / "profiles", ROOT / "templates"]

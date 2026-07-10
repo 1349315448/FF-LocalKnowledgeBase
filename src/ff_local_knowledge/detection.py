@@ -29,6 +29,22 @@ def detect_environment(workspace_root: str | Path) -> dict:
     for file_name, agent_name in agent_files:
         if (root / file_name).is_file():
             agents.append(_fact(agent_name, "high", [file_name], "instruction-file-detector"))
+    workbuddy_project_skills = root / ".workbuddy-ai" / "skills"
+    workbuddy_user_skills = Path.home() / ".workbuddy-ai" / "skills"
+    if workbuddy_project_skills.is_dir():
+        agents.append(_fact(
+            "workbuddy",
+            "high",
+            [".workbuddy-ai/skills"],
+            "skill-directory-detector",
+        ))
+    elif workbuddy_user_skills.is_dir():
+        agents.append(_fact(
+            "workbuddy",
+            "medium",
+            ["HOME:.workbuddy-ai/skills"],
+            "skill-directory-detector",
+        ))
     detected_agent_names = {str(item["value"]) for item in agents}
     for command, agent_name in (("codex", "codex"), ("claude", "claude"), ("gemini", "gemini")):
         if shutil.which(command) and agent_name not in detected_agent_names:

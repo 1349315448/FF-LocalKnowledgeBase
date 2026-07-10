@@ -38,6 +38,10 @@ ADAPTER_DESCRIPTIONS = {
         "Creates a `CLAUDE.md` managed block and `.claude/skills/ff-*` for Claude Code; "
         "does not create `.agents/skills` or `AGENTS.md`."
     ),
+    "workbuddy": (
+        "Creates `.workbuddy-ai/skills/ff-*` for project-level WorkBuddy discovery; "
+        "does not create `AGENTS.md`, `CLAUDE.md`, `.agents/skills`, or `.claude/skills`."
+    ),
 }
 
 
@@ -136,13 +140,15 @@ def scan_workspace(workspace_root: str | Path) -> dict:
     layout = "multi-repository" if len(environment["git_roots"]) > 1 else "single-workspace"
     proposed_adapters = list(dict.fromkeys(
         str(item["value"]) for item in environment["agents"]
-        if item.get("value") in {"generic", "codex", "claude"}
+        if item.get("value") in {"generic", "codex", "claude", "workbuddy"}
     )) or ["generic"]
     proposed_writes = [".ff-knowledge/", ".ffkb/runtime/"]
     if any(adapter in proposed_adapters for adapter in ("generic", "codex")):
         proposed_writes.extend([".agents/skills/", "AGENTS.md managed block"])
     if "claude" in proposed_adapters:
         proposed_writes.extend([".claude/skills/", "CLAUDE.md managed block"])
+    if "workbuddy" in proposed_adapters:
+        proposed_writes.append(".workbuddy-ai/skills/")
     return {
         "schema_version": "1.0",
         "project_root": str(root),

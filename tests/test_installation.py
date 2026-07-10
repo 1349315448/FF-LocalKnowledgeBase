@@ -304,6 +304,27 @@ class InstallationTests(unittest.TestCase):
             self.assertIn("项目概览", overview)
             self.assertIn("机器路由真相源", index)
 
+    def test_workbuddy_adapter_installs_only_project_workbuddy_skills(self):
+        with TemporaryDirectory() as directory:
+            root = self._project(directory)
+            plan = create_install_plan(
+                scan_workspace(root),
+                answers={
+                    "standards_confirmed": True,
+                    "profile": "python",
+                    "adapters": ["workbuddy"],
+                },
+            )
+            paths = {item["path"] for item in plan["operations"]}
+
+            self.assertIn(".workbuddy-ai/skills/ff-kb-bridge/SKILL.md", paths)
+            self.assertFalse(any(path.startswith(".agents/skills/") for path in paths))
+            self.assertFalse(any(path.startswith(".claude/skills/") for path in paths))
+            self.assertNotIn("AGENTS.md", paths)
+            self.assertNotIn("CLAUDE.md", paths)
+            self.assertEqual("applied", apply_plan(plan)["status"])
+            self.assertEqual("healthy", doctor(root)["status"])
+
     def test_confirmed_standards_are_written_to_the_canonical_page(self):
         with TemporaryDirectory() as directory:
             root = self._project(directory)

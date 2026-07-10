@@ -97,6 +97,8 @@ def build_default_operations(report: dict, answers: dict) -> tuple[list[dict], d
         selected.remove("generic")
     adapter_targets = {"generic": "AGENTS.md", "codex": "AGENTS.md", "claude": "CLAUDE.md"}
     for adapter in selected:
+        if adapter == "workbuddy":
+            continue
         target = adapter_targets.get(adapter)
         if target is None:
             raise ResourceUnavailableError(f"Unsupported adapter: {adapter}")
@@ -115,6 +117,8 @@ def build_default_operations(report: dict, answers: dict) -> tuple[list[dict], d
         skill_targets.append(".agents/skills")
     if "claude" in selected:
         skill_targets.append(".claude/skills")
+    if "workbuddy" in selected:
+        skill_targets.append(".workbuddy-ai/skills")
     skills_source = resource_root / "skills"
     for target_root in skill_targets:
         for source in sorted(path for path in skills_source.rglob("*") if path.is_file()):
