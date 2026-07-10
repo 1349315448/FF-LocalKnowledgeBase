@@ -9,7 +9,7 @@ from typing import Iterable, Iterator
 
 
 IGNORED_DIRECTORIES = frozenset({
-    ".git", ".hg", ".svn", ".agent", ".ffkb", ".workbuddy-ai", "node_modules", "vendor", ".venv",
+    ".git", ".hg", ".svn", ".agent", ".ffkb", ".workbuddy", ".workbuddy-ai", "node_modules", "vendor", ".venv",
     "venv", "env", "dist", "build", "target", "bin", "obj", "coverage",
     ".idea", ".vscode", ".aws", ".ssh", ".runtime", "__pycache__", ".mypy_cache", ".pytest_cache",
 })

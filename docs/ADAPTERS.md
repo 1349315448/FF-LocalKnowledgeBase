@@ -7,7 +7,7 @@
 - Generic：在仓库根目录生成简短的 `AGENTS.md` 指针，并复制 Skills 到 `.agents/skills/ff-*`；不会生成任何 Claude 文件。
 - Codex：安装 Agent Skills，并可选提供 `agents/openai.yaml` 界面元数据。
 - Claude Code：安装 Agent Skills，并在仓库根目录生成简短的 `CLAUDE.md` 指针。
-- WorkBuddy：把全部 FF Skills 安装到项目级 `.workbuddy-ai/skills/ff-*`，不创建 `AGENTS.md` 或 `CLAUDE.md`。
+- WorkBuddy：把全部 FF Skills 安装到项目级 `.workbuddy/skills/ff-*`，不创建 `AGENTS.md` 或 `CLAUDE.md`。
 
 选择 Generic 或 Codex 时，canonical Skills 会安装到 `.agents/skills`；选择 Claude Code 时，同一套 Skills 会安装到 `.claude/skills`。同时选择两类产品时，会从同一份 canonical source 生成两套发现目录，这是预期行为。
 
@@ -15,7 +15,7 @@
 
 ## WorkBuddy adapter
 
-WorkBuddy 会从用户级 `~/.workbuddy-ai/skills/<skill-name>/` 或项目级 `<workspace>/.workbuddy-ai/skills/<skill-name>/` 发现 Skills。选择 `workbuddy` adapter 后，`ffkb plan` 把全部 canonical FF Skills 写入项目级目录，其中 `ff-kb-bridge` 是 WorkBuddy 操作本地知识库的入口。用户级安装保持独立，不进入项目事务，也不会写到其他 Agent 的目录。
+WorkBuddy 桥接 Skills 使用用户级 `~/.workbuddy/skills/<skill-name>/` 或项目级 `<workspace>/.workbuddy/skills/<skill-name>/`。选择 `workbuddy` adapter 后，`ffkb plan` 只在应用计划时创建项目级桥接目录，其中 `ff-kb-bridge` 是 WorkBuddy 操作本地知识库的入口；它不会重命名或迁移 WorkBuddy 自身的应用/配置目录。探测器仍兼容识别旧的 `.workbuddy-ai/skills`，但新计划不再生成旧目录。用户级安装保持独立，不进入项目事务，也不会写到其他 Agent 的目录。
 
 适配器不得复制完整规范或知识页面。它只应告诉 Agent：知识根在哪里、应使用哪个 Skill、以及如何调用 `ffkb`。
 

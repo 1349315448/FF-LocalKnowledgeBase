@@ -39,7 +39,7 @@ ADAPTER_DESCRIPTIONS = {
         "does not create `.agents/skills` or `AGENTS.md`."
     ),
     "workbuddy": (
-        "Creates `.workbuddy-ai/skills/ff-*` for project-level WorkBuddy discovery; "
+        "Creates `.workbuddy/skills/ff-*` for project-level WorkBuddy discovery; "
         "does not create `AGENTS.md`, `CLAUDE.md`, `.agents/skills`, or `.claude/skills`."
     ),
 }
@@ -148,7 +148,7 @@ def scan_workspace(workspace_root: str | Path) -> dict:
     if "claude" in proposed_adapters:
         proposed_writes.extend([".claude/skills/", "CLAUDE.md managed block"])
     if "workbuddy" in proposed_adapters:
-        proposed_writes.append(".workbuddy-ai/skills/")
+        proposed_writes.append(".workbuddy/skills/")
     return {
         "schema_version": "1.0",
         "project_root": str(root),

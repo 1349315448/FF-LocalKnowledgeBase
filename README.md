@@ -94,7 +94,7 @@ The example selects only `generic`: it creates an `AGENTS.md` managed block and
 creates the union of their files.
 
 For WorkBuddy, use `"adapters": ["workbuddy"]`. The plan installs project-level
-Skills under `.workbuddy-ai/skills/ff-*` and creates no AGENTS or Claude files.
+Skills under `.workbuddy/skills/ff-*` and creates no AGENTS or Claude files.
 
 ## Installed Layout
 
@@ -105,7 +105,7 @@ For `generic`, only the first, second, third, and last entries apply:
 .ff-knowledge/                 canonical project knowledge
 .agents/skills/ff-*/           Generic and Codex Agent Skills
 .claude/skills/ff-*/           Claude Code Agent Skills
-.workbuddy-ai/skills/ff-*/     WorkBuddy project Agent Skills
+.workbuddy/skills/ff-*/        WorkBuddy project Agent Skills
 AGENTS.md                      reviewed FF managed block
 CLAUDE.md                      reviewed FF managed block
 .ffkb/runtime/                 install journal and manifest

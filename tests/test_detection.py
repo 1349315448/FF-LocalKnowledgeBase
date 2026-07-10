@@ -56,6 +56,17 @@ class DetectionTests(unittest.TestCase):
     def test_detect_recognizes_project_workbuddy_skill_directory(self):
         with TemporaryDirectory() as directory:
             root = Path(directory)
+            (root / ".workbuddy" / "skills").mkdir(parents=True)
+
+            result = detect_environment(root)
+
+            adapters = {item["value"]: item for item in result["agents"]}
+            self.assertIn("workbuddy", adapters)
+            self.assertIn(".workbuddy/skills", adapters["workbuddy"]["evidence"])
+
+    def test_detect_recognizes_legacy_project_workbuddy_skill_directory(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
             (root / ".workbuddy-ai" / "skills").mkdir(parents=True)
 
             result = detect_environment(root)

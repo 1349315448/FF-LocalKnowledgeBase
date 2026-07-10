@@ -52,7 +52,7 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("## Output Contract", skill)
         self.assertIn("## Boundaries", skill)
         self.assertNotIn("C:\\", skill)
-        self.assertNotIn("~/.workbuddy-ai", skill)
+        self.assertNotIn("~/.workbuddy", skill)
         self.assertIn('skills/ff-kb-bridge/SKILL.md', (ROOT / "pyproject.toml").read_text(encoding="utf-8"))
 
     def test_public_templates_do_not_contain_private_workspace_coupling(self) -> None:

@@ -118,7 +118,7 @@ def build_default_operations(report: dict, answers: dict) -> tuple[list[dict], d
     if "claude" in selected:
         skill_targets.append(".claude/skills")
     if "workbuddy" in selected:
-        skill_targets.append(".workbuddy-ai/skills")
+        skill_targets.append(".workbuddy/skills")
     skills_source = resource_root / "skills"
     for target_root in skill_targets:
         for source in sorted(path for path in skills_source.rglob("*") if path.is_file()):

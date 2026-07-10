@@ -1,6 +1,6 @@
 # Skills 使用指南
 
-Skills 是给 Agent 的短流程说明，不是项目知识的副本。它们应通过 `ffkb` 查询 canonical knowledge，而不是把整套规范塞进提示词。安装后，Generic/Codex 从 `.agents/skills` 发现 Skills，Claude Code 从 `.claude/skills` 发现 Skills，WorkBuddy 从 `.workbuddy-ai/skills` 发现 Skills。
+Skills 是给 Agent 的短流程说明，不是项目知识的副本。它们应通过 `ffkb` 查询 canonical knowledge，而不是把整套规范塞进提示词。安装后，Generic/Codex 从 `.agents/skills` 发现 Skills，Claude Code 从 `.claude/skills` 发现 Skills，WorkBuddy 从 `.workbuddy/skills` 发现 Skills。
 
 本页面向中文使用者说明触发场景；canonical `SKILL.md` 保持简洁英文，以便不同 Agent 和 Windows 终端稳定读取与校验。
 

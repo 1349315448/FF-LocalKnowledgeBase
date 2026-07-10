@@ -317,7 +317,7 @@ class InstallationTests(unittest.TestCase):
             )
             paths = {item["path"] for item in plan["operations"]}
 
-            self.assertIn(".workbuddy-ai/skills/ff-kb-bridge/SKILL.md", paths)
+            self.assertIn(".workbuddy/skills/ff-kb-bridge/SKILL.md", paths)
             self.assertFalse(any(path.startswith(".agents/skills/") for path in paths))
             self.assertFalse(any(path.startswith(".claude/skills/") for path in paths))
             self.assertNotIn("AGENTS.md", paths)
