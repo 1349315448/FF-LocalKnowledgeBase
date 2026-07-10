@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "project_id": "{{PROJECT_ID}}",
+  "display_name": "{{PROJECT_NAME}}",
+  "locale": "{{LOCALE}}",
+  "query": {
+    "max_pages": 3,
+    "max_truth_chars": 6000,
+    "max_related_edges": 5,
+    "record_hits": false
+  }
+}

@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ff-local-knowledge-base"
+version = "0.1.0"
+description = "Local knowledge and transactional bootstrap tools for coding agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+dependencies = []
+
+[project.scripts]
+ffkb = "ff_local_knowledge.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"share/ff-local-knowledge-base/profiles/generic" = ["profiles/generic/profile.json"]
+"share/ff-local-knowledge-base/profiles/dotnet" = ["profiles/dotnet/profile.json"]
+"share/ff-local-knowledge-base/profiles/node" = ["profiles/node/profile.json"]
+"share/ff-local-knowledge-base/profiles/python" = ["profiles/python/profile.json"]
+"share/ff-local-knowledge-base/templates/adapters/generic" = ["templates/adapters/generic/AGENTS.md.tmpl"]
+"share/ff-local-knowledge-base/templates/adapters/codex" = ["templates/adapters/codex/AGENTS.md.tmpl"]
+"share/ff-local-knowledge-base/templates/adapters/claude" = ["templates/adapters/claude/CLAUDE.md.tmpl"]
+"share/ff-local-knowledge-base/templates/knowledge" = ["templates/knowledge/INDEX.md", "templates/knowledge/knowledge.json", "templates/knowledge/router.json", "templates/knowledge/pending.jsonl"]
+"share/ff-local-knowledge-base/templates/knowledge/pages/standards" = ["templates/knowledge/pages/standards/coding-standards.md"]
+"share/ff-local-knowledge-base/templates/knowledge/pages/projects" = ["templates/knowledge/pages/projects/project-overview.md"]
+"share/ff-local-knowledge-base/templates/knowledge/graph" = ["templates/knowledge/graph/nodes.jsonl", "templates/knowledge/graph/edges.jsonl"]
+"share/ff-local-knowledge-base/templates/locales/zh-CN/pages/standards" = ["templates/locales/zh-CN/pages/standards/coding-standards.md"]
+"share/ff-local-knowledge-base/templates/locales/zh-CN/pages/projects" = ["templates/locales/zh-CN/pages/projects/project-overview.md"]
+"share/ff-local-knowledge-base/templates/locales/zh-CN" = ["templates/locales/zh-CN/INDEX.md"]
+"share/ff-local-knowledge-base/skills/ff-bootstrap" = ["skills/ff-bootstrap/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-bootstrap/agents" = ["skills/ff-bootstrap/agents/openai.yaml"]
+"share/ff-local-knowledge-base/skills/ff-develop" = ["skills/ff-develop/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-develop/agents" = ["skills/ff-develop/agents/openai.yaml"]
+"share/ff-local-knowledge-base/skills/ff-knowledge" = ["skills/ff-knowledge/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-knowledge/agents" = ["skills/ff-knowledge/agents/openai.yaml"]
+"share/ff-local-knowledge-base/skills/ff-learn" = ["skills/ff-learn/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-learn/agents" = ["skills/ff-learn/agents/openai.yaml"]
+"share/ff-local-knowledge-base/skills/ff-learn/references" = ["skills/ff-learn/references/ingest.md"]
+"share/ff-local-knowledge-base/skills/ff-plan" = ["skills/ff-plan/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-plan/agents" = ["skills/ff-plan/agents/openai.yaml"]
+"share/ff-local-knowledge-base/skills/ff-plan/references" = ["skills/ff-plan/references/artifacts.md"]
+"share/ff-local-knowledge-base/skills/ff-verify" = ["skills/ff-verify/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-verify/agents" = ["skills/ff-verify/agents/openai.yaml"]
+"share/ff-local-knowledge-base/skills/ff-review" = ["skills/ff-review/SKILL.md"]
+"share/ff-local-knowledge-base/skills/ff-review/agents" = ["skills/ff-review/agents/openai.yaml"]

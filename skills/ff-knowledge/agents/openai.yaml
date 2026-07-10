@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF Knowledge"
+  short_description: "Query compact project knowledge before changing code"
+  default_prompt: "Use $ff-knowledge to find the relevant project facts and standards."

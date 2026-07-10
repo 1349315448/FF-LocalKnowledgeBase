@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+.venv/
+venv/
+
+# Local runtime state
+.ffkb/
+.ffkb/cache/
+.ffkb/reports/
+.ffkb/transactions/
+.ffkb/tmp/
+
+# Agent handoff state
+.agent/sdd/*
+!.agent/sdd/.gitignore
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

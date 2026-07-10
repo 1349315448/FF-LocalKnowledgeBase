@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF Review"
+  short_description: "Review requirements, regressions, standards, and scope"
+  default_prompt: "Use $ff-review to review the actual diff and verification evidence."

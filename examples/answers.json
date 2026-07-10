@@ -1,0 +1,9 @@
+{
+  "standards_confirmed": true,
+  "project_id": "synthetic-workspace",
+  "project_name": "Synthetic Workspace",
+  "locale": "en",
+  "profile": "python",
+  "adapters": ["codex", "claude"],
+  "knowledge_path": ".ff-knowledge"
+}

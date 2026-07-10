@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "python",
+  "display_name": "Python",
+  "markers": ["pyproject.toml", "setup.cfg", "requirements.txt", "uv.lock"],
+  "suggested_commands": ["python -m unittest", "python -m pytest"],
+  "standards": [
+    "Use the detected project metadata, Python range, environment manager, formatter, and type checker.",
+    "Keep imports and package layout consistent with the existing build backend.",
+    "Test through public modules or CLI behavior rather than private implementation details."
+  ]
+}

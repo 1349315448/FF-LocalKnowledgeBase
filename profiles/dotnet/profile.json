@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "dotnet",
+  "display_name": ".NET",
+  "markers": ["*.sln", "*.csproj", "Directory.Build.props"],
+  "suggested_commands": ["dotnet build", "dotnet test"],
+  "standards": [
+    "Respect solution and project boundaries discovered from project references.",
+    "Use the repository formatter, analyzers, nullable settings, and target frameworks as authority.",
+    "Place tests in the existing test container and exercise the public seam."
+  ]
+}

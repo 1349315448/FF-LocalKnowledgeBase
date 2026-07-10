@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "id": "generic",
+  "display_name": "Generic engineering baseline",
+  "markers": [],
+  "standards": [
+    "Verify the real source and configuration before editing.",
+    "Preserve user changes and make the smallest clear change.",
+    "Prefer existing project capabilities before adding abstractions.",
+    "Test behavior changes and verify completion with fresh evidence.",
+    "Do not perform destructive actions, commits, pushes, or releases without authorization.",
+    "Never place secrets or private customer data in project knowledge."
+  ]
+}

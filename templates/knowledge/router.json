@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "keywords": ["standards", "conventions", "code style", "testing", "规范", "代码规范", "测试"],
+      "primary_pages": ["page:standards/coding-standards"],
+      "optional_pages": ["page:projects/project-overview"]
+    },
+    {
+      "keywords": ["architecture", "project", "module", "build", "test", "架构", "项目", "模块", "构建"],
+      "primary_pages": ["page:projects/project-overview"],
+      "optional_pages": ["page:standards/coding-standards"]
+    }
+  ]
+}

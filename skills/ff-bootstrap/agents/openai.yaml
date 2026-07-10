@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF Bootstrap"
+  short_description: "Inspect a repository and prepare a reviewed installation"
+  default_prompt: "Use $ff-bootstrap to inspect this repository and prepare an installation report."

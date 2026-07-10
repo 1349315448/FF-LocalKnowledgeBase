@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "node",
+  "display_name": "Node.js",
+  "markers": ["package.json", "pnpm-workspace.yaml", "yarn.lock", "package-lock.json"],
+  "suggested_commands": ["npm test", "npm run lint"],
+  "standards": [
+    "Use the detected package manager and lockfile; do not mix package managers.",
+    "Treat package scripts and repository lint/format configuration as the command authority.",
+    "Do not add a runtime dependency when the platform or existing dependency already covers the need."
+  ]
+}

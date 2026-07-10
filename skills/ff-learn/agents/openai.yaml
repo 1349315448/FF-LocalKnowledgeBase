@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF Learn"
+  short_description: "Capture and ingest verified reusable project knowledge"
+  default_prompt: "Use $ff-learn to decide whether and how to preserve this verified lesson."

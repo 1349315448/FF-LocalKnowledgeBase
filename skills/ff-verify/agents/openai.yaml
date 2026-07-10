@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF Verify"
+  short_description: "Verify current behavior before reporting completion"
+  default_prompt: "Use $ff-verify to gather fresh evidence for the completion claim."

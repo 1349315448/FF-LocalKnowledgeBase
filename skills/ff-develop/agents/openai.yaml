@@ -1,0 +1,4 @@
+interface:
+  display_name: "FF Develop"
+  short_description: "Route development through evidence, tests, and review"
+  default_prompt: "Use $ff-develop to implement this change with the project workflow."

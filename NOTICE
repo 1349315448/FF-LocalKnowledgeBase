@@ -1,0 +1,13 @@
+FF-LocalKnowledgeBase
+Copyright 2026 FF-LocalKnowledgeBase contributors
+
+This project implements an original, agent-neutral local knowledge workflow.
+Its design was informed by the public Agent Skills specification and by common
+test-first, verification, and code-review practices in the AI coding ecosystem.
+
+No private project pages, customer data, production schemas, internal logs, or
+workspace-specific knowledge are included in this distribution.
+
+The `agents/openai.yaml` files are optional OpenAI/Codex adapter metadata. The
+canonical skills remain portable `SKILL.md` packages and do not require OpenAI
+services.

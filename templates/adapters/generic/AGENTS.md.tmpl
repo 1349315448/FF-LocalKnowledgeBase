@@ -1,0 +1,9 @@
+# Agent Instructions
+
+This repository uses FF-LocalKnowledgeBase.
+
+- Query project knowledge before planning or editing: `ffkb query --root "{{KNOWLEDGE_ROOT}}" --intent "<request>"`.
+- Load the matching `ff-*` Skill for bootstrap, development, planning, knowledge, learning, verification, or review.
+- Treat `{{KNOWLEDGE_ROOT}}` as the canonical project-knowledge root; derived cache is not a writeback source.
+- Preserve existing repository instructions and user changes.
+- Do not report completion without fresh verification.
